@@ -7,6 +7,7 @@
 	request.setCharacterEncoding("UTF-8");
 // 해당 로그인 창에서 입력된 정보를 불러와 재할당. 
 	String id = request.getParameter("id");
+	System.out.println(id);
 	String password = request.getParameter("password");
 %>
 <!-- JSTL 에서  사용하는 사용자 정의 태그. -->

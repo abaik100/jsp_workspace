@@ -1,18 +1,25 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="java.sql.*"%>
+<%@page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy"%>
+<%@page import="com.oreilly.servlet.MultipartRequest"%>
+
 <html>
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
-<title>오늘의 카드</title>
+<title>내정보</title>
 </head>
 <body>
 	<jsp:include page="menu.jsp" />
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3">오늘의 카드</h1>
+			<h1 class="display-3">내정보</h1>
 		</div>
 	</div>
-
+	<%
+	request.setCharacterEncoding("UTF-8");
+	String id = (String) session.getAttribute("sessionId");
+/* 	System.out.println(id); */
+	%>
 <!--  디비에 연결하기 위한 정보를 담아둔 페이지. -->
 		<%@ include file="dbconn.jsp" %>
 	<div class="container">
@@ -26,21 +33,21 @@
 			// 해당 상품의 정보를 가져오기 위한 쿼리 문장. 
 			// member로 교체
 
-				String sql = "select * from member";
+				
+				System.out.println(id);
+				String sql = "select * from member where id = ?";
 				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, id);
+				System.out.println(pstmt);
 				rs = pstmt.executeQuery();
 				while (rs.next()) {
 			%>
 			<div class="col-md-4">
 			<img src=".<%=rs.getString("photo")%>" style="width: 250px; height:250px">
-<%-- 				<img src="<%=rs.getString("photo")%>" style="width: 100%"> --%>
-				<%-- system.out.println("<%=rs.getString("photo")%>"); --%>
-<!-- 				<img src="./upload/member/애쉬(Ashe).PNG" alt="images"style="width:350px; height:350px;"/>  -->
-				<%-- <img src="c:/upload/<%=rs.getString("p_fileName")%>" style="width: 100%"> --%>
-			<%-- <img src="C:/JSP_Workspace1/ch18_WebMarket_2/src/main/webapp/resources/images/<%=rs.getString("p_fileName")%>" style="width: 100%"> --%>
 				<h3><%=rs.getString("name")%></h3>
 				<p><%=rs.getString("age")%>
-				<p><%=rs.getString("address")%>
+				<p><%=rs.getString("gender")%>
+				<p><%=rs.getString("phone")%>
 				<p><a href="./product.jsp?id=<%=rs.getString("id")%>"class="btn btn-secondary" role="button">상세 정보 &raquo;></a>
 			</div>
 			<%
