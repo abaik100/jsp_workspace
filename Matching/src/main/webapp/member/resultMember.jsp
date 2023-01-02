@@ -11,10 +11,23 @@
 			<h1 class="display-3">회원정보</h1>
 		</div>
 	</div>
+	<%@ include file="../dbconn.jsp"%>
 	<div class="container" align="center">
+	
 		<%
+		
 			String msg = request.getParameter("msg");
-
+			String id = (String) session.getAttribute("sessionId");
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+			
+			String sql = "select * from member where id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			
+		
+			while (rs.next()) {
 			if (msg != null) {
 				if (msg.equals("0"))
 					out.println(" <h2 class='alert alert-danger'>회원정보가 수정되었습니다.</h2>");
@@ -23,11 +36,28 @@
 				else if (msg.equals("2")) {
 					String loginId = (String) session.getAttribute("sessionId");
 					out.println(" <h2 class='alert alert-danger'>" + loginId + "님 환영합니다</h2>");
-				}				
+					session.setAttribute("sessionGender",rs.getString("gender"));
+					session.setAttribute("sessionAddress",rs.getString("address"));
 			} else {
 				out.println("<h2 class='alert alert-danger'>회원정보가 삭제되었습니다.</h2>");
 			}
+			}
+			}
+			
+		
+			if (rs != null)
+				rs.close();
+				if (pstmt != null)
+				pstmt.close();
+				if (conn != null)
+				conn.close();
+
 		%>
-	</div>	
+
+
+
+
+
+	</div>
 </body>
 </html>

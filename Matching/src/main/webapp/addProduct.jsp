@@ -34,20 +34,21 @@
 			// member로 교체
 
 				
-				System.out.println(id);
 				String sql = "select * from member where id = ?";
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, id);
-				System.out.println(pstmt);
 				rs = pstmt.executeQuery();
+				System.out.println(id);
+				System.out.println(pstmt);
+				System.out.println(rs);
 				while (rs.next()) {
 			%>
 			<div class="col-md-4">
 			<img src=".<%=rs.getString("photo")%>" style="width: 250px; height:250px">
 				<h3><%=rs.getString("name")%></h3>
-				<p><%=rs.getString("age")%>
-				<p><%=rs.getString("gender")%>
-				<p><%=rs.getString("phone")%>
+				<p><b>나이</b> : <%=rs.getString("age")%>
+				<p><b>성별</b> : <%=rs.getString("gender")%>
+				<p><b>주소</b> : <%=rs.getString("address")%>
 				<p><a href="./product.jsp?id=<%=rs.getString("id")%>"class="btn btn-secondary" role="button">상세 정보 &raquo;></a>
 			</div>
 			<%

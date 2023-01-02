@@ -21,12 +21,15 @@
 						<li style="padding-top: 7px; color: white">[<%=sessionId%>님]</li>
 						<li class="nav-item"><a class="nav-link" href="<c:url value="/member/logoutMember.jsp"/>">로그아웃 </a></li>
 						<li class="nav-item"><a class="nav-link" href="<c:url value="/member/updateMember.jsp"/>">회원 수정</a></li>
+						<li class="nav-item"><a class="nav-link" href="<c:url value="/products.jsp"/>">오늘의 카드</a></li>
+						<li class="nav-item"><a class="nav-link" href="<c:url value="/addProduct.jsp"/>">내정보</a></li>
+					
 					</c:otherwise>
 				</c:choose>
 								<!-- 상품목록 -->
-				<li class="nav-item"><a class="nav-link" href="<c:url value="/products.jsp"/>">오늘의 카드</a></li>
+				
 								<!-- 상품등록 -->
-				<li class="nav-item"><a class="nav-link" href="<c:url value="/addProduct.jsp"/>">내정보</a></li>
+				
 								<!-- 상품수정 -->
 				<li class="nav-item"><a class="nav-link" href="<c:url value="/editProduct.jsp?edit=update"/>">설정</a></li>
 								<!-- 상품삭제 -->
