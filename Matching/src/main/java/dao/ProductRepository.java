@@ -28,48 +28,15 @@ public class ProductRepository {
 		//이렇게 작업해서 보여 주는 이유는 
 		// ProductRepository 클래스를 이용해 데이터를 입력한다. 
 		// DTO -> 데이터를 전달하기 위한 객체 형식.
-		Product phone = new Product("P1234", "iPhone 6s", 800000);
-		phone.setDescription("4.7-inch, 1334X750 Renina HD display, 8-megapixel iSight Camera");
-		phone.setCategory("Smart Phone");
-		phone.setManufacturer("Apple");
-		phone.setUnitsInStock(1000);
-		phone.setCondition("New");
-		phone.setFilename("P1234.png");
-
-		Product notebook = new Product("P1235", "LG PC 그램", 1500000);
-		notebook.setDescription("13.3-inch, IPS LED display, 5rd Generation Intel Core processors");
-		notebook.setCategory("Notebook");
-		notebook.setManufacturer("LG");
-		notebook.setUnitsInStock(1000);
-		notebook.setCondition("Refurbished");
-		notebook.setFilename("P1235.png");
-
-		Product tablet = new Product("P1236", "Galaxy Tab S", 900000);
-		tablet.setDescription("212.8*125.6*6.6mm,  Super AMOLED display, Octa-Core processor");
-		tablet.setCategory("Tablet");
-		tablet.setManufacturer("Samsung");
-		tablet.setUnitsInStock(1000);
-		tablet.setCondition("Old");
-		tablet.setFilename("P1236.png");
 		
 		//상품등록 부분 연습하기. 이미지 파일 위치는 c:/upload
 		// 상품의 예는 디비에 있는 내용을 기반으로 등록함. 
 		// P123456/ test/ 1000원 / test :설명 / test :카테고리
 		// 수량 : 11 / 상품 상태 : New / 이미지파일이름 : 라바1.jfif 
 		// 회사 이름 : test
-		Product testLarva = new Product("P123456", "test", 1000);
-		testLarva.setDescription("test");
-		testLarva.setCategory("test");
-		testLarva.setManufacturer("test");
-		testLarva.setUnitsInStock(11);
-		testLarva.setCondition("New");
-		testLarva.setFilename("라바1.jfif");
 
 		//리스트 객체 추가. 
-		listOfProducts.add(phone);
-		listOfProducts.add(notebook);
-		listOfProducts.add(tablet);
-		listOfProducts.add(testLarva);
+
 	}
 
 	public ArrayList<Product> getAllProducts() {
@@ -83,7 +50,7 @@ public class ProductRepository {
 
 		for (int i = 0; i < listOfProducts.size(); i++) {
 			Product product = listOfProducts.get(i);
-			if (product != null && product.getProductId() != null && product.getProductId().equals(productId)) {
+			if (product != null && product.getId() != null && product.getId().equals(productId)) {
 				productById = product;
 				break;
 			}

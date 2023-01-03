@@ -19,7 +19,7 @@
 </head>
 <body onload="init()">
 	<jsp:include page="/menu.jsp" />
-	<div class="jumbotron">
+	<div class="jumbotron mx-4"style="background-color: ffefca;">
 		<div class="container">
 			<h1 class="display-3">회원 수정</h1>
 		</div>
@@ -41,7 +41,7 @@
 			<div class="form-group  row">
 				<label class="col-sm-2 ">아이디</label>
 				<div class="col-sm-3">
-					<input name="id" type="text" class="form-control" placeholder="id" value="<c:out value='${row.id }'/>" >
+					<input name="id" type="text" class="form-control" placeholder="id" value="<c:out value='${row.id }'/>" disabled>
 				</div>
 			</div>
 			<div class="form-group  row">

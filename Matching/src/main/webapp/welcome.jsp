@@ -11,7 +11,7 @@
 	String tagline = "Welcome to Romance!";%>
 
 
-    <div class="jumbotron mx-4">
+    <div class="jumbotron mx-4"style="background-color: ffefca;">
         <div class="container">
         </div>
     </div>

@@ -10,7 +10,7 @@
 </head>
 <body>
 	<jsp:include page="menu.jsp" />
-	<div class="jumbotron">
+	<div class="jumbotron mx-4"style="background-color: ffefca;">
 		<div class="container">
 			<h1 class="display-3">내정보</h1>
 		</div>
@@ -49,8 +49,6 @@
 				<p><b>나이</b> : <%=rs.getString("age")%>
 				<p><b>성별</b> : <%=rs.getString("gender")%>
 				<p><b>주소</b> : <%=rs.getString("address")%>
-				<p><a href="./product.jsp?id=<%=rs.getString("id")%>"class="btn btn-secondary" role="button">상세 정보 &raquo;></a>
-			</div>
 			<%
 				}
 				

@@ -11,6 +11,15 @@ public class Product implements Serializable {
 	private Integer age;
 	private String address;
 	private String photo;
+	private Integer quantity;
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
+
 	public Product() {
 		super();
 	}

@@ -15,7 +15,7 @@
 </head>
 <body>
 	<jsp:include page="../menu.jsp" />
-	<div class="jumbotron">
+	<div class="jumbotron mx-4"style="background-color: ffefca;">
 		<div class="container">
 			<h1 class="display-3">게시판</h1>
 		</div>

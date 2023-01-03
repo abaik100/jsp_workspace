@@ -13,7 +13,7 @@
 </head>
 <body>
 	<jsp:include page="menu.jsp" />
-	<div class="jumbotron">
+	<div class="jumbotron mx-4"style="background-color: ffefca;">
 		<div class="container">
 			<h1 class="display-3">장바구니</h1>
 		</div>
@@ -36,7 +36,7 @@
 					<th>소계</th>
 					<th>비고</th>
 				</tr>
-				<%				
+<%-- 				<%				
 					int sum = 0;
 					ArrayList<Product> cartList = (ArrayList<Product>) session.getAttribute("cartlist");
 					if (cartList == null)
@@ -44,24 +44,25 @@
 
 					for (int i = 0; i < cartList.size(); i++) { // 상품리스트 하나씩 출력하기
 						Product product = cartList.get(i);
-						int total = product.getUnitPrice() * product.getQuantity();
-						sum = sum + total;
-				%>
-				<tr>
-					<td><%=product.getProductId()%> - <%=product.getPname()%></td>
+/* 						int total = product.getUnitPrice() * product.getQuantity(); */
+						/* sum = sum + total; */
+				%> --%>
+<%-- 				<tr>
+					<td><%=product.getId()%> - <%=product.getName()%></td>
 					<td><%=product.getUnitPrice()%></td>
 					<td><%=product.getQuantity()%></td>
 					<td><%=total%></td>
-					<td><a href="./removeCart.jsp?id=<%=product.getProductId()%>" class="badge badge-danger">삭제</a></td>
-				</tr>
-				<%
+					<td><a href="./removeCart.jsp?id=<%=product.getId()%>" class="badge badge-danger">삭제</a></td>
+				</tr> --%>
+				
+<%-- 				<%
 					}
-				%>
+				%> --%>
 				<tr>
 					<th></th>
 					<th></th>
 					<th>총액</th>
-					<th><%=sum%></th>
+<%-- 					<th><%=sum%></th> --%>
 					<th></th>
 				</tr>
 			</table>
