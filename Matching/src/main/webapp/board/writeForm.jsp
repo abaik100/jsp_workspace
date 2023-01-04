@@ -27,7 +27,7 @@
 </script>
 <body>
 	<jsp:include page="../menu.jsp" />
-	<div class="jumbotron">
+	<div class="jumbotron mx-4"style="background-color: ffefca;">
 		<div class="container"align="center">
 			<img src="./resources/images/게시판.png" alt="images"style="width:150px; height:70px;"/>
 		</div>
