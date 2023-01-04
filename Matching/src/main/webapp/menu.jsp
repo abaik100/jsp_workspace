@@ -7,7 +7,8 @@
 <nav class="navbar navbar-expand  navbar-dark bg-warning">
 	<div class="container">
 		<div class="navbar-header">
-			<a class="navbar-brand" href="http://localhost:8080/WebMarket/welcome.jsp">ROMANCE</a>
+			<a href="/welcome.jsp"><img src="../resources/images/rose.png" alt="images"style="width:35px; height:35px;vertical-align: top;"/></a>
+			<a class="navbar-brand" href="/welcome.jsp">ROMANCE</a>
 			<!-- <a class="navbar-brand" href="/ch18_WebMarket_2/welcome.jsp">Home</a> -->
 		</div>
 		<div>

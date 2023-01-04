@@ -11,8 +11,8 @@
 <body>
 	<jsp:include page="menu.jsp" />
 	<div class="jumbotron mx-4"style="background-color: ffefca;">
-		<div class="container">
-			<h1 class="display-3">오늘의 카드</h1>
+		<div class="container"align="center">
+			<img src="./resources/images/오늘의_카드.png" alt="images"style="width:250px; height:70px;"/>
 		</div>
 	</div>
 	<%

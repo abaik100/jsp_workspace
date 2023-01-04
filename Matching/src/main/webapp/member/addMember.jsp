@@ -25,9 +25,9 @@
 </head>
 <body>
 	<jsp:include page="/menu.jsp" />
-	<div class="jumbotron">
-		<div class="container">
-			<h1 class="display-3">회원 가입</h1>
+	<div class="jumbotron mx-4"style="background-color: ffefca;">
+		<div class="container" align = "center">
+			<img src="../resources/images/회원정보.png" alt="images"style="width:190px; height:60px;"/>
 		</div>
 	</div>
 <!-- enctype 을 multipart/form-data로 바꿔줘야 한다. -->

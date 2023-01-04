@@ -11,8 +11,8 @@
 <body>
 	<jsp:include page="menu.jsp" />
 	<div class="jumbotron mx-4"style="background-color: ffefca;">
-		<div class="container">
-			<h1 class="display-3">내정보</h1>
+		<div class="container"align="center">
+			<img src="./resources/images/내정보.png" alt="images"style="width:150px; height:60px;"/>
 		</div>
 	</div>
 	<%

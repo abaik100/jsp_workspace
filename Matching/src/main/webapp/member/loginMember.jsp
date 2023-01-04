@@ -5,10 +5,10 @@
 <title>Login</title>
 </head>
 <body>
-	<jsp:include page="/menu.jsp" />
+	<jsp:include page="../menu.jsp" />
 	<div class="jumbotron mx-4"style="background-color: ffefca;">
-		<div class="container">
-			<h1 class="display-3">로그인</h1>
+		<div class="container"align = "center">
+			<img src="../resources/images/로그인.png" alt="images"style="width:160px; height:75px;"/>
 		</div>
 	</div>
 	<div class="container" align="center">

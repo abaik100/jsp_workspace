@@ -5,17 +5,12 @@
 <title>회원 정보</title>
 </head>
 <body>
+
 	<jsp:include page="/menu.jsp" />
-	<div class="jumbotron mx-4"style="background-color: ffefca;">
-		<div class="container">
-			<h1 class="display-3">회원정보</h1>
-		</div>
-	</div>
 	<%@ include file="../dbconn.jsp"%>
-	<div class="container" align="center">
-	
-		<%
-		
+	<div class="jumbotron mx-4"style="background-color: ffefca;">
+		<div class="container"align="center">
+			<%
 			String msg = request.getParameter("msg");
 			String id = (String) session.getAttribute("sessionId");
 			PreparedStatement pstmt = null;
@@ -26,7 +21,6 @@
 			pstmt.setString(1, id);
 			rs = pstmt.executeQuery();
 
-			String m = "Ezreal";
 		
 			while (rs.next()) {
 			if (msg != null) {
@@ -36,15 +30,15 @@
 					out.println(" <h2 class='alert alert-danger'>회원가입을 축하드립니다.</h2>");
 				else if (msg.equals("2")) {
 					String loginId = (String) session.getAttribute("sessionId");
-					out.println(" <h2 class='alert alert-danger'>" + loginId + "님 환영합니다</h2>");
 					session.setAttribute("sessionGender",rs.getString("gender"));
 					session.setAttribute("sessionAddress",rs.getString("address"));
-				
-					if(rs.getString("receive")!= null && rs.getString("send")== null) {
-						out.println(" <h2 class='alert alert-danger'>" + rs.getString("send") + "님에게 부터 좋아요를 받았습니다.</h2>");
+					out.println(" <h2 class='alert alert-danger'>" + loginId + "님 환영합니다</h2>");
+
+					if(!rs.getString("receive").equals("") && rs.getString("send").equals("")) {
+						out.println(" <h2 class='alert alert-danger'>" + rs.getString("receive") + "님에게 부터 좋아요를 받았습니다.</h2>");
 						session.setAttribute("sessionReceive",rs.getString("receive"));
 					}
-					if(rs.getString("receive")!= null && rs.getString("send")!= null) {
+					if(rs.getString("receive").equals(rs.getString("send"))) {
 						out.println(" <h2 class='alert alert-danger'>" + rs.getString("send") + "님과 매칭되었습니다.</h2>");
 
 					}
@@ -57,8 +51,8 @@
 			}
 			}
 			}
-			
-		
+/* 			response.sendRedirect("/welcome.jsp");
+		 */
 		
 			if (rs != null)
 				rs.close();
@@ -68,6 +62,9 @@
 				conn.close();
 
 		%>
+		</div>
+	</div>
+		
 
 
 
