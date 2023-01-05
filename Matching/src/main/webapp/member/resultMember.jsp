@@ -56,7 +56,26 @@
 	</div>
 		
 	</div>
+
+
+		<div class="container text-center">
+		<div class="row">
+			<div class="col">
+				<img src="../resources/images/love.png" alt="images"
+					style="width: 250px; height: 250px; margin-top: 50px; " />
+			</div>
+			<div class="col">
+				<img src="../resources/images/R2.gif" alt="images"
+					style="width: 500px; height: 350px; vertical-align: top;" />
+			</div>
+
+
+		</div>
+
+
+	</div>
 </body>
+
 </html>
 
 <!-- response.sendRedirect("/welcome.jsp");

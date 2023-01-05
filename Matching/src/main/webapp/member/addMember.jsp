@@ -25,17 +25,18 @@
 </head>
 <body>
 	<jsp:include page="/menu.jsp" />
-	<div class="jumbotron mx-4"style="background-color: ffefca;">
-		<div class="container" align = "center">
-			<img src="../resources/images/회원정보.png" alt="images"style="width:190px; height:60px;"/>
+	<div class="jumbotron mx-4" style="background-color: ffefca;">
+		<div class="container" align="center">
+			<img src="../resources/images/회원정보.png" alt="images"
+				style="width: 190px; height: 60px;" />
 		</div>
 	</div>
-<!-- enctype 을 multipart/form-data로 바꿔줘야 한다. -->
+	<!-- enctype 을 multipart/form-data로 바꿔줘야 한다. -->
 	<div class="container">
 
 		<form name="newMember" class="form-horizontal"
 			action="processAddMember.jsp" method="post"
-			onsubmit="return checkForm()"enctype="multipart/form-data">
+			onsubmit="return checkForm()" enctype="multipart/form-data">
 			<div class="form-group  row">
 				<label class="col-sm-2 ">아이디</label>
 				<div class="col-sm-3">
@@ -101,6 +102,14 @@
 					<input type="file" name="photo" class="form-control">
 				</div>
 			</div>
+			<div class="form-group row">
+				<label class="col-sm-2">사진등록2<fmt:message key="productImage" /></label>
+				<div class="col-sm-5">
+					<input type="file" name="photo2" class="form-control">
+				</div>
+			</div>
+
+
 			<div class="form-group  row">
 				<div class="col-sm-offset-2 col-sm-10 ">
 					<input type="submit" class="btn btn-primary " value="등록 ">

@@ -10,7 +10,9 @@ String path = "/upload/member";
 //실제적으로 저장되는 폴더 위치
 String savePath = request.getServletContext().getRealPath(path) ;
 int maxSize = 100*1024*1024;
-String encoding = "utf-8";
+String encoding = "utf-8"; 
+
+System.out.println(savePath);
 
 // 클라이언트 name = "photo" -> 임시저장소 -> 지정한 위치 파일명으로 저장
 MultipartRequest multi = new MultipartRequest(request,savePath,maxSize,encoding,new DefaultFileRenamePolicy());
@@ -30,6 +32,12 @@ String photo = multi.getFilesystemName("photo");
 		photo  = "noImage.jpg";
 	else
 		photo = path + "/"+ photo;
+	
+String photo2 = multi.getFilesystemName("photo2");
+	if(photo2 == null || photo2.equals(""))
+		photo2  = "noImage.jpg";
+	else
+		photo2 = path + "/"+ photo2;
 
 
 	Date currentDatetime = new Date(System.currentTimeMillis());
@@ -42,7 +50,7 @@ String photo = multi.getFilesystemName("photo");
 	driver="com.mysql.jdbc.Driver" user="root" password="k404" />
 
 <sql:update dataSource="${dataSource}" var="resultSet">
-   INSERT INTO member(id,password,name,gender,age,phone,address,photo,regist_day) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+   INSERT INTO member(id,password,name,gender,age,phone,address,regist_day) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
    <sql:param value="<%=id%>" />
 	<sql:param value="<%=password%>" />
 	<sql:param value="<%=name%>" />
@@ -50,9 +58,21 @@ String photo = multi.getFilesystemName("photo");
 	<sql:param value="<%=age%>" />
 	<sql:param value="<%=phone%>" />
 	<sql:param value="<%=address%>" />
-	<sql:param value="<%=photo%>" />
+<%-- 	<sql:param value="<%=photo%>" /> --%>
 	<sql:param value="<%=timestamp%>" />
 </sql:update>
+<sql:update dataSource="${dataSource}" var="resultSet">
+	INSERT INTO member_images(id,photo) VALUES (?, ?)
+	   <sql:param value="<%=id%>" />
+	   <sql:param value="<%=photo%>"/>
+</sql:update>
+
+<sql:update dataSource="${dataSource}" var="resultSet">
+	INSERT INTO member_images(id,photo) VALUES (?, ?)
+	   <sql:param value="<%=id%>" />
+	   <sql:param value="<%=photo2%>"/>
+</sql:update>
+
 
 <c:if test="${resultSet>=1}">
 	<c:redirect url="resultMember.jsp?msg=1" />

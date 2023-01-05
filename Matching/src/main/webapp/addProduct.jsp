@@ -29,6 +29,8 @@
 				PreparedStatement pstmt = null;
 			// 디비에서 조회된 정보들을 담을 객체.
 				ResultSet rs = null;
+				ResultSet rs2 = null;
+				ResultSet rs3 = null;
 				
 			// 해당 상품의 정보를 가져오기 위한 쿼리 문장. 
 			// member로 교체
@@ -38,13 +40,22 @@
 				pstmt = conn.prepareStatement(sql);
 				pstmt.setString(1, id);
 				rs = pstmt.executeQuery();
-				System.out.println(id);
-				System.out.println(pstmt);
-				System.out.println(rs);
-				while (rs.next()) {
+				
+				String sql2 = "select * from member_Images where id = ? && num = 1";
+				pstmt = conn.prepareStatement(sql2);
+				pstmt.setString(1, id);
+				rs2 = pstmt.executeQuery();
+				
+				String sql3 = "select * from member_Images where id = ? && num = 2";
+				pstmt = conn.prepareStatement(sql3);
+				pstmt.setString(1, id);
+				rs3 = pstmt.executeQuery();
+				
+				
+				while (rs.next() && rs2.next()) {
 			%>
 			<div class="col-md-4">
-			<img src=".<%=rs.getString("photo")%>" style="width: 250px; height:250px">
+				<img src=".<%=rs2.getString("photo")%>" style="width: 250px; height:250px"> 
 				<h3><%=rs.getString("name")%></h3>
 				<p><b>나이</b> : <%=rs.getString("age")%>
 				<p><b>성별</b> : <%=rs.getString("gender")%>
