@@ -96,8 +96,8 @@
 				</div>
 			</div>
 
-			<div class="form-group row">
-				<label class="col-sm-2">사진등록<fmt:message key="productImage" /></label>
+<!-- 			<div class="form-group row">
+				<label class="col-sm-2">사진등록1<fmt:message key="productImage" /></label>
 				<div class="col-sm-5">
 					<input type="file" name="photo" class="form-control">
 				</div>
@@ -107,7 +107,7 @@
 				<div class="col-sm-5">
 					<input type="file" name="photo2" class="form-control">
 				</div>
-			</div>
+			</div> -->
 
 
 			<div class="form-group  row">
