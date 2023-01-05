@@ -19,80 +19,116 @@
 </script>
 </head>
 <body>
+<body>
 	<jsp:include page="menu.jsp" />
-	<div class="jumbotron mx-4"style="background-color: ffefca;">
-		<div class="container">
-			<h1 class="display-3">프로필</h1>
+	<div class="jumbotron mx-4" style="background-color: ffefca;">
+		<div class="container" align="center">
+			<img src="./resources/images/오늘의_카드.png" alt="images"
+				style="width: 250px; height: 70px;" />
 		</div>
 	</div>
 	<%
-	//id 상품의 아이디입니다.
-		String id = request.getParameter("id");
-	
-	//클래스에 등록된 샘플 상품을 사용하는 대신 디비 사용하기위해서. 주석. 
-	/* 	ProductRepository dao = ProductRepository.getInstance();
-		Product product = dao.getProductById(id); */
+	request.setCharacterEncoding("UTF-8");
+	String id = (String) session.getAttribute("sessionId");
+	String gender = (String) session.getAttribute("sessionGender");
+	String address = (String) session.getAttribute("sessionAddress");
+	String ID;
+	System.out.println(gender);
+	/* 	System.out.println(id); */
 	%>
 	<!--  디비에 연결하기 위한 정보를 담아둔 페이지. -->
-	<!-- 이 파일을 포함하면서 화면상 약간의 간격이 벌어지거나, 틀어지는 현상이 발생할수도 있음. 
-	만약, 이상해지면, 이 파일의 위치를 수정 할 예정.  -->
-		<%@ include file="dbconn.jsp" %>
+	<%@ include file="dbconn.jsp"%>
 	<div class="container">
-		<div class="row">
-		
-		<%
+		<div class="row" align="center">
+			<%
 			// 동적쿼리, 해당 sql 문장을 전달할 때 이용할 객체
-				PreparedStatement pstmt = null;
+			PreparedStatement pstmt = null;
 			// 디비에서 조회된 정보들을 담을 객체.
-				ResultSet rs = null;
-				
+			ResultSet rs = null;
+			ResultSet rs2 = null;
+			ResultSet rs3 = null;
+
 			// 해당 상품의 정보를 가져오기 위한 쿼리 문장. 
-			// ? 의 위치값은 1부터 시작합니다.
-					// ?,?,? : 1,2,3 의 순서가 됩니다. 
-				String sql = "select * from member where id = ?";
-			//현재 작업 중.
-			//sql 문장을 pstmt 객체에 담기.
-				pstmt = conn.prepareStatement(sql);
-			// 동적인 문장에 첫번째 파라미터에 , 해당하는 문자열 값으로 상품의 아이디를 입력 로직. 
-				pstmt.setString(1, id);
-			// 조회를 할 때, executeQuery() 메소드를 호출
-				rs = pstmt.executeQuery();
-			// rs ResultSet 라는 형식의 객체에 테이블 형식으로 값을 저장. 
-				while (rs.next()) { // 반복문을 통해서 해당 상품의 정보를 불러오면됩니다. 
+			// member로 교체
+
+			/* 			System.out.println(id);
+				System.out.println(pstmt);
+				System.out.println(rs); */
+
+			String sql = "select * from member where not id = ? and not gender = ? and address = ?limit 1";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, gender);
+			pstmt.setString(3, address);
+			rs = pstmt.executeQuery();
+
+			String sql2 = "select * from member_Images as i join member as m on m.id = i.id and not m.id = ? and not m.gender=? and  m.address=? order by num ASC limit 1";
+			pstmt = conn.prepareStatement(sql2);
+			pstmt.setString(1, id);
+			pstmt.setString(2, gender);
+			pstmt.setString(3, address);
+			rs2 = pstmt.executeQuery();
+
+			String sql3 = "select * from member_Images as i join member as m on m.id = i.id and not m.id = ? and not m.gender=? and  m.address=? order by num DESC limit 1";
+			pstmt = conn.prepareStatement(sql3);
+			pstmt.setString(1, id);
+			pstmt.setString(2, gender);
+			pstmt.setString(3, address);
+			rs3 = pstmt.executeQuery();
+
+			while (rs.next() && rs2.next() && rs3.next()) {
 			%>
-		
-			<div class="col-md-5">
-			<!-- 상세페이지 부분에 사진 출력은 나중에 과제로 제시 예정. 검사는 안함.  -->
-			<img src=".<%=rs.getString("photo")%>" style="width: 250px; height:250px">
-				<%-- <img src="c:/upload/<%=product.getFilename()%>" style="width: 100%" /> --%>
-				<%-- <img src="C:/JSP_Workspace1/ch18_WebMarket_2/src/main/webapp/resources/images/<%=rs.getString("p_fileName")%>" style="width: 100%"> --%>
-			</div>
-			<div class="col-md-6">
-		 	<h3><%=rs.getString("name")%></h3>
-				<p><b>아이디 : <%=rs.getString("id")%>
-				<p><b>주소</b> : <%=rs.getString("address")%>
-				<p><b>전화번호</b> : <%=rs.getString("phone")%>
-				<p><b>성별</b> : <%=rs.getString("gender")%>
-				
+			<%-- 			<div class="col-md-4">
+			<img src=".<%=rs.getString("photo")%>" style="width: 250px; height:250px"> --%>
+			<div class="container">
+				<div class="row">
+					<div class="col-6">
+						<img src=".<%=rs2.getString("photo")%>"
+							style="width: 200px; height: 300px;" rounded
+							float-start" alt="..."> 
+						<img src=".<%=rs3.getString("photo")%>"
+							style="width: 200px; height: 300px;" rounded
+							float-start" alt="...">
+						</div>
+				<div class="col col-lg-2">
+					<div class="jumbotron mx-4" style="background-color: ffffff;">
+					</div>
+					</div>
+					
+				<div class="col">
+					<div class="text-left">
+					<h3><%=rs.getString("name")%></h3>
+					<p>
+						<b>나이</b> :
+						<%=rs.getString("age")%>
+					<p>
+						<b>성별</b> :
+						<%=rs.getString("gender")%>
+					<p>
+						<b>주소</b> :
+						<%=rs.getString("address")%>
 				 <p><form name="addForm" action="./addCart.jsp?id=<%=rs.getString("id")%>" method="post">
 					<a href="#" class="btn btn-info" onclick="addToCart()"> 좋아요 &raquo;</a>
 <!-- 					<a href="./cart.jsp" class="btn btn-warning">리스트 &raquo;</a>  -->
 					<a href="./products.jsp" class="btn btn-secondary"> 되돌아가기 &raquo;</a>
 				</form> 
-			</div>
-			<%
+				<%
 				}
-				
+
 				if (rs != null)
-					rs.close();
+				rs.close();
 				if (pstmt != null)
-					pstmt.close();
+				pstmt.close();
 				if (conn != null)
-					conn.close();
-			%>
+				conn.close();
+				%>
+
+			</div>
+			</div>
+			<hr>
 		</div>
-		<hr>
-	</div>
-	<jsp:include page="footer.jsp" />
+		<jsp:include page="footer.jsp" />
 </body>
 </html>
+
+
