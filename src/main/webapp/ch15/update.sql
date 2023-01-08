@@ -1,1 +1,0 @@
-UPDATE MEMBER SET name='È«±æ¼ø' WHERE id='admin';

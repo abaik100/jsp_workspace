@@ -1,2 +1,0 @@
-SELECT * fROM MEMBER;
-SELECT * fROM MEMBER WHERE id='admin';
